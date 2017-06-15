@@ -52,7 +52,21 @@ var spotify = new Spotify ({
 	id: "b47ff273b32f46e2b414f10a09871472",
 	secret: "ed9a99de01e243ad971ea12452eba1ea"
 });
-console.log(spotify); 
+//console.log(spotify);
+
+// Indexes Songs
+if (process2 === "spotify-this-song") {
+
+    // Spotify Search
+    spotify.search({type: 'track', query: process3}, function(err, data) {
+
+        // Throw Error
+        if (err) {
+            return console.log('Error occured: ' + err);
+        }
+        console.log(data);
+    });
+} 
 
 
 
