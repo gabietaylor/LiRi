@@ -48,9 +48,9 @@ if (process2 === "tweets") {
 var Spotify = require('node-spotify-api');
 
 // Spotify User Based Auth.
-var spotify = new Spotify ({
-	id: "b47ff273b32f46e2b414f10a09871472",
-	secret: "ed9a99de01e243ad971ea12452eba1ea"
+var spotify = new Spotify({
+    id: "b47ff273b32f46e2b414f10a09871472",
+    secret: "ed9a99de01e243ad971ea12452eba1ea"
 });
 //console.log(spotify);
 
@@ -58,21 +58,27 @@ var spotify = new Spotify ({
 if (process2 === "spotify-this-song") {
 
     // Spotify Search
-    spotify.search({type: 'track', query: process3}, function(err, data) {
+    spotify.search({
+        type: 'track',
+        query: process3
+    }, function(err, data) {
 
         // Throw Error
         if (err) {
             return console.log('Error occured: ' + err);
         }
-        console.log(data);
+        //console.log(data);
+
+        // Artists
+
+        // Loop through items for artist
+        for (var i = 0; i < data.tracks.items.length; i++) {
+            //console.log(data.tracks.items[i]);
+            for (var j = 0; j < data.tracks.items[i].album.artists.length; j++) {
+                console.log(data.tracks.items[i].album.artists[j].name);
+            }
+        }
     });
-} 
-
-
-
-
-
-
-
+}
 
 // ---------------------------Movie
