@@ -35,7 +35,7 @@ switch (proc2) {
         }
         break;
     case "do-what-it-says":
-        read();
+        readFile();
         break;
     default:
         console.log("Please choose type in either: my-tweets, spotify-this-song, this-movie, do-what-it-says")
@@ -117,10 +117,10 @@ function omdb() {
     });
 }
 // ------------------------------RF Complete
-function read() {
+function readFile() {
     // read random.txt
-    fs.read("random.txt", "utf8", function(err, data) {
-                if (err) {
+    fs.readFile("random.txt", "utf8", function(err, data) {
+        if (err) {
             return console.log(err);
         }
         // Split data in random.txt by commas
@@ -130,4 +130,17 @@ function read() {
         spotify();
     });
 }
-// ------------------------------WF Complete
+// ------------------------------Append F Complete
+/*function readFile() {
+    // read random.txt
+    fs.readFile("random.txt", "utf8", function(err, data) {
+        if (err) {
+            return console.log(err);
+        }
+        // Split data in random.txt by commas
+        var split = data.split(",");
+        proc3 = split[1];
+        //console.log(data);
+        spotify();
+    });
+}*/
