@@ -35,10 +35,10 @@ switch (proc2) {
         }
         break;
     case "do-what-it-says":
-        twitter();
+        read();
         break;
     default:
-        console.log("Please choose type in either: tweets, spotify-this-song, this-movie")
+        console.log("Please choose type in either: my-tweets, spotify-this-song, this-movie, do-what-it-says")
 }
 //-------------------------------------------Twitter Complete
 function twitter() {
@@ -59,14 +59,11 @@ function twitter() {
         }
         // No Error
         if (!error) {
-            /*            console.log(tweets);*/
+            /*console.log(tweets);*/
         }
         for (var i = 0; i < tweets.length; i++) {
             console.log(tweets[i].text);
         }
-        /*        for (var i = 0; i < tweets.length; i++) {
-                    //console.log(tweets[i].created_at);
-                }*/
     });
 }
 // ---------------------------Spotify Complete
@@ -89,10 +86,10 @@ function spotify() {
             return console.log('Error occured: ' + err);
         } else {
             var songInfo = data.tracks.items[0];
-            var songResult = console.log(songInfo.artists[0].name);
-            console.log(songInfo.name);
-            console.log(songInfo.album.name);
-            console.log(songInfo.preview_url);
+            var songResult = console.log("Artist: " + songInfo.artists[0].name);
+            console.log("Song: " + songInfo.name);
+            console.log("Album: " + songInfo.album.name);
+            console.log("URL: " + songInfo.preview_url);
             /*console.log(songResult);*/
         };
     });
@@ -119,12 +116,12 @@ function omdb() {
         }
     });
 }
-// ------------------------------FS
-function readFile() {
+// ------------------------------RF Complete
+function read() {
     // read random.txt
-    fs.readFile("random.txt", "utf8", function(err, data) {
-        if (err) {
-            return comsole.log(err);
+    fs.read("random.txt", "utf8", function(err, data) {
+                if (err) {
+            return console.log(err);
         }
         // Split data in random.txt by commas
         var split = data.split(",");
@@ -132,4 +129,5 @@ function readFile() {
         //console.log(data);
         spotify();
     });
-};
+}
+// ------------------------------WF Complete
