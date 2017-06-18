@@ -40,7 +40,7 @@ switch (proc2) {
         break;
     case "weather":
         if (proc3 === undefined) {
-            console.log("Your search was undefined but heres weather for New Orleans, La");
+            console.log("Your search was undefined but heres weather for New Orleans, LA");
             proc3 = "New Orleans, La";
             weatherJs();
         } else {
@@ -143,7 +143,7 @@ function readFile() {
 // ------------------------------Append F
 /*function writeFile() {
     // read random.txt
-    fs.writeFile("log.txt", "utf8", twitter(), spotify(), omdb(), readFile(), function(err, data) {
+    fs.writeFile("log.txt", "utf8", proc2, proc3, function(err, data) {
         if (err) {
             return console.log(err);
         }
@@ -154,7 +154,7 @@ function readFile() {
         //console.log(data);
     });
 }*/
-// ------------------------------Weather
+// ------------------------------Weather Complete
 function weatherJs() {
     weather.find({
         search: proc3,
