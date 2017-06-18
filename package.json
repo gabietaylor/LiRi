@@ -19,6 +19,7 @@
   "dependencies": {
     "node-spotify-api": "^1.0.5",
     "request": "^2.81.0",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "weather-js": "^2.0.0"
   }
 }

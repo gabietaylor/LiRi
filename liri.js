@@ -9,6 +9,7 @@ var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var request = require("request");
 var fs = require("fs");
+var weather = require("weather-js");
 
 // now lets switch
 // switch get rid of if () statements in code and chgs everything to functions
@@ -37,8 +38,11 @@ switch (proc2) {
     case "do-what-it-says":
         readFile();
         break;
+    case "weather":
+        weather();
+        break;
     default:
-        console.log("Please choose type in either: my-tweets, spotify-this-song, this-movie, do-what-it-says")
+        console.log("Please choose type in either: my-tweets, spotify-this-song 'Name of Song', this-movie 'Movie Name', do-what-it-says, weather 'City, State'")
 }
 //-------------------------------------------Twitter Complete
 function twitter() {
@@ -130,17 +134,38 @@ function readFile() {
         spotify();
     });
 }
-// ------------------------------Append F Complete
-/*function readFile() {
+// ------------------------------Append F
+/*function writeFile() {
     // read random.txt
-    fs.readFile("random.txt", "utf8", function(err, data) {
+    fs.writeFile("log.txt", "utf8", twitter(), spotify(), omdb(), readFile(), function(err, data) {
         if (err) {
             return console.log(err);
         }
+        console.log("log.txt was updated");
         // Split data in random.txt by commas
         var split = data.split(",");
         proc3 = split[1];
         //console.log(data);
-        spotify();
     });
 }*/
+// ------------------------------Weather
+// Here we include the weather-js so we can use it in our Node application.
+function weather() {
+    // Then we use the package to search for the weather at a location
+    weather.find({
+        search: proc3,
+        degreeType: "F"
+    }, function(err, result) {
+
+        // If there is an error log it.
+        if (err) {
+            console.log(err);
+        }
+
+        // If there is no error... then print out the weather data.
+        // We use JSON.stringify to print the data in string format.
+        // We use the JSON.stringify argument of "2" to make the format pretty.
+        // See link here: http://stackoverflow.com/questions/4810841/how-can-i-pretty-print-json-using-javascript
+        console.log(JSON.stringify("The Current Temperature is: " + result[0].current.temperature, null, 2));
+    });
+}
