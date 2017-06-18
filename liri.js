@@ -39,7 +39,13 @@ switch (proc2) {
         readFile();
         break;
     case "weather":
-        weather();
+        if (proc3 === undefined) {
+            console.log("Your search was undefined but heres weather for New Orleans, La");
+            proc3 = "New Orleans, La";
+            weatherJs();
+        } else {
+            weatherJs();
+        }
         break;
     default:
         console.log("Please choose type in either: my-tweets, spotify-this-song 'Name of Song', this-movie 'Movie Name', do-what-it-says, weather 'City, State'")
@@ -149,23 +155,16 @@ function readFile() {
     });
 }*/
 // ------------------------------Weather
-// Here we include the weather-js so we can use it in our Node application.
-function weather() {
-    // Then we use the package to search for the weather at a location
+function weatherJs() {
     weather.find({
         search: proc3,
         degreeType: "F"
     }, function(err, result) {
-
-        // If there is an error log it.
         if (err) {
             console.log(err);
+        } else {
+            console.log(JSON.stringify("Location Name: " + result[0].location.name, null, 2));
+            console.log(JSON.stringify("Current Temperature: " + result[0].current.temperature, null, 2));
         }
-
-        // If there is no error... then print out the weather data.
-        // We use JSON.stringify to print the data in string format.
-        // We use the JSON.stringify argument of "2" to make the format pretty.
-        // See link here: http://stackoverflow.com/questions/4810841/how-can-i-pretty-print-json-using-javascript
-        console.log(JSON.stringify("The Current Temperature is: " + result[0].current.temperature, null, 2));
     });
 }
