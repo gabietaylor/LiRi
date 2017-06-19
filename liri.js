@@ -49,7 +49,7 @@ switch (proc2) {
         }
         break;
     case "wikipedia":
-  if (proc3 === undefined) {
+        if (proc3 === undefined) {
             console.log("Your search was undefined but heres some info on Malcolm X");
             proc3 = "Malcolm X";
             wikipediajs();
@@ -166,6 +166,25 @@ function readFile() {
         //console.log(data);
     });
 }*/
+// ------------------------------Wiki Complete
+function wikipediajs() {
+    var query = proc3;
+    // if you want to retrieve a full article set summaryOnly to false. 
+    // Full article retrieval and parsing is still beta 
+    var options = {
+        query: query,
+        format: "html",
+        summaryOnly: true
+    };
+    wikipedia.searchArticle(options, function(err, htmlWikiText) {
+        if (err) {
+            console.log("An error occurred[query=%s, error=%s]", query, err);
+            return;
+        } else {
+            console.log( /*"Query successful[query=%s, html-formatted-wiki-text=%s]", */ query, htmlWikiText);
+        }
+    });
+}
 // ------------------------------Weather Complete
 function weatherJs() {
     weather.find({
@@ -177,25 +196,6 @@ function weatherJs() {
         } else {
             console.log(JSON.stringify("Location Name: " + result[0].location.name, null, 2));
             console.log(JSON.stringify("Current Temperature: " + result[0].current.temperature, null, 2));
-        }
-    });
-}
-// ------------------------------Wiki
-function wikipediajs() {
-    var query = proc3;
-    // if you want to retrieve a full article set summaryOnly to false. 
-    // Full article retrieval and parsing is still beta 
-    var options = {
-        query: query,
-        format: "html",
-        summaryOnly: true
-    };
-    wikipedia.searchArticle(options, function(err, htmlWikiText) {
-            if (err) {
-                console.log("An error occurred[query=%s, error=%s]", query, err);
-                return;
-            } else {
-            console.log(/*"Query successful[query=%s, html-formatted-wiki-text=%s]", */query, htmlWikiText);
         }
     });
 }
