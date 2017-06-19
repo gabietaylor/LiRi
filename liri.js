@@ -10,6 +10,7 @@ var Spotify = require('node-spotify-api');
 var request = require("request");
 var fs = require("fs");
 var weather = require("weather-js");
+var wikipedia = require("wikipedia-js");
 
 // now lets switch
 // switch get rid of if () statements in code and chgs everything to functions
@@ -47,6 +48,14 @@ switch (proc2) {
             weatherJs();
         }
         break;
+    case "wikipedia":
+  if (proc3 === undefined) {
+            console.log("Your search was undefined but heres some info on Malcolm X");
+            proc3 = "Malcolm X";
+            wikipediajs();
+        } else {
+            wikipediajs();
+        }
     default:
         console.log("Please choose type in either: my-tweets, spotify-this-song 'Name of Song', this-movie 'Movie Name', do-what-it-says, weather 'City, State'")
 }
@@ -95,7 +104,9 @@ function spotify() {
         if (err) {
             return console.log('Error occured: ' + err);
         } else {
+            // var to go into first tracks item
             var songInfo = data.tracks.items[0];
+            // grabs all info of song
             var songResult = console.log("Artist: " + songInfo.artists[0].name);
             console.log("Song: " + songInfo.name);
             console.log("Album: " + songInfo.album.name);
@@ -115,7 +126,7 @@ function omdb() {
         }
         // No error push this
         if (!error && response.statusCode === 200) {
-            // Parse stuff to body
+            // Parse info to body
             console.log("Title: " + JSON.parse(body).Title);
             console.log("Release Year: " + JSON.parse(body).Year);
             console.log("IMBD Rating: " + JSON.parse(body).imbdsRating);
@@ -137,6 +148,7 @@ function readFile() {
         var split = data.split(",");
         proc3 = split[1];
         //console.log(data);
+        // runs spotify on cmd
         spotify();
     });
 }
@@ -165,6 +177,25 @@ function weatherJs() {
         } else {
             console.log(JSON.stringify("Location Name: " + result[0].location.name, null, 2));
             console.log(JSON.stringify("Current Temperature: " + result[0].current.temperature, null, 2));
+        }
+    });
+}
+// ------------------------------Wiki
+function wikipediajs() {
+    var query = proc3;
+    // if you want to retrieve a full article set summaryOnly to false. 
+    // Full article retrieval and parsing is still beta 
+    var options = {
+        query: query,
+        format: "html",
+        summaryOnly: true
+    };
+    wikipedia.searchArticle(options, function(err, htmlWikiText) {
+            if (err) {
+                console.log("An error occurred[query=%s, error=%s]", query, err);
+                return;
+            } else {
+            console.log(/*"Query successful[query=%s, html-formatted-wiki-text=%s]", */query, htmlWikiText);
         }
     });
 }
