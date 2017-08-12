@@ -68,7 +68,7 @@ function twitter() {
     //console.log(client);
     // 20 tweets
     var params = {
-        screen_name: 'EzioAuditoreAno',
+        screen_name: 'gabietaylordev',
         limit: 20
     };
     client.get('statuses/user_timeline', params, function(error, tweets, response) {

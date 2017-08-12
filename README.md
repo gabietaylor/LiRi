@@ -7,12 +7,11 @@ In this assignment, I made LIRI. LIRI is like iPhone's SIRI. However, while SIRI
 Liri takes in the following commands:
 
 1. my-tweets
-
 Shows your last 20 tweets and when they were created
+[![Alt text](images/1.png)](#)
 
 
 2. spotify-this-song + 'song name here'
-
 It shows you the following:
 
   * Artist(s)
@@ -20,10 +19,10 @@ It shows you the following:
   * A preview link of the song from Spotify
   * The album that the song is from
   (If no song is provided then the program will default to you to "The Sign" by Ace of Base.)
+[![Alt text](images/2.png)](#)
 
 
 3. movie-this + 'movie name here'
-
 It shows you the following: 
   * Title of the movie.
   * Year the movie came out.
@@ -33,10 +32,13 @@ It shows you the following:
   * Plot of the movie.
   * Actors in the movie.
   (If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.')
+[![Alt text](images/3.png)](#)
 
 
 4. do-what-it-says
-
 LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 (It will run "spotify-this-song" for "Purple Rain")
+[![Alt text](images/4.png)](#)
 
+5. weather + 'city, state'
+[![Alt text](images/5.png)](#)
